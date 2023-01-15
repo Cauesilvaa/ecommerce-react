@@ -8,3 +8,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
+
+/*
+ import { BrowserRouter, Routes, Route, Switch } from 'react-router-dom';
+<BrowserRouter>
+      <Switch>
+        <Route path="/" component={<App/>}></Route>
+      </Switch>
+    </BrowserRouter>
+ */
