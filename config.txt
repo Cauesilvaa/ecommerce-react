@@ -1,0 +1,9 @@
+* Para rodar o projeto
+- npm run dev
+
+* Para criar o projeto na pasta 'React apoio' abri com code e no terminal gitbash rodei
+- npm create vite@latest ecommerce-react
+
+- npm i 
+
+- npm i react-icons react-router-dom
