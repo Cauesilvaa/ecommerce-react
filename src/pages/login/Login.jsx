@@ -1,17 +1,20 @@
-import { useState } from 'react'
 import './Login.css'
 import imgLogin from '../../assets/img-login.jpg'
+import { useState } from 'react'
+import { Link } from "react-router-dom";
+import Home from '../home/Home';
 
-function Login() {
+const Login = () => {
 
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
 
-  function Login () {
+  function LoginSistem () {
 
-    if (login !== 'loginTeste' || password !== 'senhaTeste') return console.log('Usuario invalido')
+    if (login !== '1' || password !== '1') return console.log('Usuario invalido')
 
     console.log('Usuario valido')
+    {<Link to={<Home />}/>}
   }
 
   return (
@@ -40,7 +43,7 @@ function Login() {
               <input type="text" name="login" placeholder="Digite a senha" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
 
-            <button type='button' onClick={Login}>Entrar</button>
+            <button type='button' onClick={LoginSistem}>Entrar</button>
 
           </form>
         </div>
