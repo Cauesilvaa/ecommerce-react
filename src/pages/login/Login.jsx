@@ -1,20 +1,54 @@
 import './Login.css'
 import imgLogin from '../../assets/img-login.jpg'
 import { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Home from '../home/Home';
+import LoginServices from '../../services/login/Login';
+
+const loginService = new LoginServices()
 
 const Login = () => {
 
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
+  const [btnDisabled, setBtnDisabled] = useState(false)
+  const navigate = useNavigate()
 
-  function LoginSistem () {
+  function hash(s) {
+    return s.split("").reduce(function(a, b) {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+  }
 
-    if (login !== '1' || password !== '1') return console.log('Usuario invalido')
+  function LoginSistem (e) {
 
-    console.log('Usuario valido')
-    {<Link to={<Home />}/>}
+    e.preventDefault()
+
+    setBtnDisabled(true)
+
+    /*
+    const response = await loginService.Login({email: login, password: password})
+    console.log(response);
+
+    if (response == true){
+      alert('Usuario logado')
+      setBtnDisabled(false)
+    }
+
+    setBtnDisabled(false)
+    return alert('Usuario invalido')
+    */
+
+    if (login !== '1' || password !== '1') {
+      setBtnDisabled(false)
+      return alert('Usuario invalido')
+    }
+
+    localStorage.setItem("token", hash("teste"))
+    alert('Usuario valido')
+    navigate('/home')
+    setBtnDisabled(false)
   }
 
   return (
@@ -43,7 +77,7 @@ const Login = () => {
               <input type="text" name="login" placeholder="Digite a senha" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
 
-            <button type='button' onClick={LoginSistem}>Entrar</button>
+            <button type='button' onClick={LoginSistem} disabled={btnDisabled}>Entrar</button>
 
           </form>
         </div>
