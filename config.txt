@@ -12,4 +12,5 @@
 
 * Para instalar o bootstrap
 - npm install bootstrap
+- npm install react-bootstrap
 - e no main.jsx importar. ex: import 'bootstrap/dist/css/bootstrap.min.css'
