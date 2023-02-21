@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #539CCF;
+}
+
+.class-navbar{
+    font-size: 1.20em;
+}
+
+.class-img {
+    height: 10%;
+    width: 10%;
+    margin-right: 5%;
+}
+
+.search-navbar {
+    margin-right: 10%;
+}

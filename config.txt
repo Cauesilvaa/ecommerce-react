@@ -9,3 +9,7 @@
 - npm i react-icons react-router-dom
 
 - npm i axios
+
+* Para instalar o bootstrap
+- npm install bootstrap
+- e no main.jsx importar. ex: import 'bootstrap/dist/css/bootstrap.min.css'

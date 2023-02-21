@@ -1,8 +1,7 @@
 import './Login.css'
 import imgLogin from '../../assets/img-login.jpg'
 import { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
-import Home from '../home/Home';
+import { useNavigate } from "react-router-dom";
 import LoginServices from '../../services/login/Login';
 
 const loginService = new LoginServices()
@@ -61,20 +60,18 @@ const Login = () => {
       <div className='div-fundo-login-2'>
 
         <div className='div-login'>
-          <h1>testando</h1>
+          <h1>Entrar</h1>
 
           <form className='form-login'>
-            
-            <div className='form-control'>
-              <label htmlFor='login'>Login</label> <br/>
-              <input type="text" name="login" placeholder="Digite o e-mail" onChange={(e) => setLogin(e.target.value)}></input>
+
+            <div className="form-floating mb-3">
+              <input type="email" className="form-control inputs-login" id="floatingInput" onChange={(e) => setLogin(e.target.value)}/>
+              <label htmlFor="floatingInput">E-mail</label>
             </div>
 
-            <br />
-            
-            <div className='form-control'>
-              <label htmlFor='login'>Senha</label> <br/>
-              <input type="text" name="login" placeholder="Digite a senha" onChange={(e) => setPassword(e.target.value)}></input>
+            <div className="form-floating">
+              <input type="password" className="form-control inputs-login" id="floatingPassword" onChange={(e) => setPassword(e.target.value)}/>
+              <label htmlFor="floatingPassword">Senha</label>
             </div>
 
             <button type='button' onClick={LoginSistem} disabled={btnDisabled}>Entrar</button>

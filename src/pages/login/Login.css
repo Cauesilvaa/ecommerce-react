@@ -48,18 +48,7 @@
   .form-login {
     margin-top: 100px;
     margin-left: 150px;
-  }
-  
-  .form-login label {
-    font-size: 1.5em;
-  }
-  
-  .form-login input {
-    font-size: 0.9em;
-    height: 40px;
-    width: 300px;
-    border-radius: 7px;
-    border: 2px solid #22272b;
+    width: 60%;
   }
   
   .form-login button {
