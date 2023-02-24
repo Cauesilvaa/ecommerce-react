@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
 import Carrosel from '../../components/carrosel/Carrosel'
 import NavbarComponent from '../../components/navbar/NavbarComponent'
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button'
+import CardComponent from '../../components/card/CardComponent'
+import imgChuteira1 from '../../assets/chuteira-1.jpg'
+import imgChuteira2 from '../../assets/chuteira-2.jpg'
+import imgChuteira3 from '../../assets/chuteira-3.jpg'
 
 const Home = () => {
+
+  const [getCards, setCards] = useState([{id: Math.random(), img: imgChuteira1}, {id: Math.random(), img: imgChuteira2}, {id: Math.random(), img: imgChuteira3}])
+  console.log(getCards);
+
   return (    
     <div>
       <NavbarComponent />
@@ -38,6 +46,10 @@ const Home = () => {
       </div>
 
       <h1 className='text-prod-em-alta'>Produtos em alta</h1>
+
+      <div className='card-container'>
+        {getCards.length > 0 && getCards.map((el) => <CardComponent key={el.id} img={el.img} title={"Teste"} text={"aaaaaaa"}/> )}
+      </div>
 
     </div>
   )
