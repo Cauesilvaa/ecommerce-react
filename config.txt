@@ -7,6 +7,7 @@
 - npm i 
 
 - npm i react-icons react-router-dom
+- link de icons https://react-icons.github.io/react-icons/icons?name=bs
 
 - npm i axios
 
