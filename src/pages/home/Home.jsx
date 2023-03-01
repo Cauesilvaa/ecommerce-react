@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Home.css'
 import Carrosel from '../../components/carrosel/Carrosel'
 import NavbarComponent from '../../components/navbar/NavbarComponent'
@@ -7,11 +7,28 @@ import CardComponent from '../../components/card/CardComponent'
 import imgChuteira1 from '../../assets/chuteira-1.jpg'
 import imgChuteira2 from '../../assets/chuteira-2.jpg'
 import imgChuteira3 from '../../assets/chuteira-3.jpg'
+import { CarContext } from "../../context/CarContext";
 
 const Home = () => {
 
-  const [getCards, setCards] = useState([{id: Math.random(), img: imgChuteira1}, {id: Math.random(), img: imgChuteira2}, {id: Math.random(), img: imgChuteira3}])
-  console.log(getCards);
+  const {car, setCar} = useContext(CarContext)
+  
+  useEffect(() => {
+    setCar("Ney")
+    console.log(car);
+  })  
+  
+  const [getCards, setCards] = useState([
+    {id: Math.random(), img: imgChuteira1, title:"Chuteira Nike Mercurial", text: "Produto nike para jogar futebol de campo", price: 'R$: 220,99'}, 
+    {id: Math.random(), img: imgChuteira2, title:"Chuteira Nike Mercurial", text: "Produto nike para jogar futebol de campo", price: 'R$: 2790,99'}, 
+    {id: Math.random(), img: imgChuteira3, title:"Chuteira Nike Mercurial do Ney na Copa do mundo de 2014", text: "Produto nike para jogar futebol de campo e dar aula ta ?!", price: 'R$: 320,99'}])
+    
+    // getCards.forEach((el) => {
+    //   // console.log(el);
+    //   setCar(el)
+    // });
+    
+    // console.log(car);
 
   return (    
     <div>
@@ -48,7 +65,7 @@ const Home = () => {
       <h1 className='text-prod-em-alta'>Produtos em alta</h1>
 
       <div className='card-container'>
-        {getCards.length > 0 && getCards.map((el) => <CardComponent key={el.id} img={el.img} title={"Teste"} text={"aaaaaaa"}/> )}
+        {getCards.length > 0 && getCards.map((el) => <CardComponent key={el.id} img={el.img} title={el.title} text={el.text} price={el.price}/> )}
       </div>
 
     </div>
