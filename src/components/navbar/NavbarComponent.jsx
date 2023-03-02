@@ -25,7 +25,7 @@ const NavbarComponent = () => {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0 class-color-text">
         <li className="nav-item">
           <a className="nav-link" aria-current="page" href="" onClick={()=> navigate('/home')}>Início</a>
         </li>
@@ -44,7 +44,7 @@ const NavbarComponent = () => {
       </ul>
       <form className="d-flex search-navbar" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <button className="btn btn-outline-light" type="submit">Search</button>
       </form>
     </div>
   </div>

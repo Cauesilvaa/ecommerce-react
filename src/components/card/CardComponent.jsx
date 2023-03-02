@@ -11,7 +11,7 @@ const CardComponent = ({img, title, text, price}) => {
 
   return (    
     <>
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem', marginTop: '20px' }}>
       <Card.Img variant="top" src={img} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
