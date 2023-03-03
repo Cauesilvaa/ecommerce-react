@@ -1,15 +1,20 @@
 import React from 'react'
 import './Details.css'
 import NavbarComponent from '../../components/navbar/NavbarComponent'
-import img1 from '../../assets/chuteira-1.jpg'
+// import img1 from '../../assets/chuteira-1.jpg'
+import noImage from '../../assets/no-image.jpg'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { arrayCarGlobal } from '../../context/CarContext';
 
 const Details = () => {
+
+  const img = arrayCarGlobal.map((el) => {return el})
+
   return (
     <div>
         <NavbarComponent />
@@ -21,15 +26,8 @@ const Details = () => {
             {Array.from({ length: 4 }).map((_, idx) => (
                 <Col key={idx}>
                 <Card>
-                    <Card.Img variant="top" src={img1} />
-                    <Card.Body>
-                    {/* <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                        This is a longer card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit
-                        longer.
-                    </Card.Text> */}
-                    </Card.Body>
+                    <Card.Img variant="top" src={img[0] ? img[0].img : noImage} />
+                    <Card.Body></Card.Body>
                 </Card>
                 </Col>
             ))}
@@ -39,8 +37,12 @@ const Details = () => {
         <div className='class-details'>
           <Alert variant="secondary">
             
-            <Alert.Heading>Nome do Produto</Alert.Heading>
-              <h5>Preço do produto</h5>
+            <Alert.Heading>{img[0] ? img[0].title : '-'}</Alert.Heading>
+
+            <br />
+              <h5>{img[0] ? img[0].price : '-'}</h5>
+            <br />
+
               <p>
                 detalhes do produto detalhes do produto detalhes do produto detalhes do produto 
                 detalhes do produto detalhes do produto detalhes do produto detalhes do produto 

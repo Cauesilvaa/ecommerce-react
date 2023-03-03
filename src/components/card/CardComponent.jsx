@@ -3,7 +3,9 @@ import './CardComponent.css'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router';
+import { arrayCarGlobal } from '../../context/CarContext';
 // import imgChuteira1 from '../../assets/chuteira-1.jpg'
+import { CarContext } from "../../context/CarContext";
 
 const CardComponent = ({img, title, text, price}) => {
 
@@ -17,7 +19,13 @@ const CardComponent = ({img, title, text, price}) => {
         <Card.Title>{title}</Card.Title>
         <Card.Text> {text} </Card.Text>
         <Card.Text> {price} </Card.Text>
-        <Button variant="primary" onClick={()=> {navigate('/details')}}>Detalhes</Button>
+
+        <Button variant="primary" onClick={()=> {
+          arrayCarGlobal.shift()
+          arrayCarGlobal.push({img, title, text, price})
+          navigate('/details')
+          }}>Detalhes</Button>
+          
       </Card.Body>
       </Card>
 
