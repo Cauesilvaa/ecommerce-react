@@ -82,9 +82,15 @@ const Details = () => {
                 <hr />
 
               <div className="d-grid gap-2">
+                
+                <Button variant="primary" size="lg">
+                  Adicionar ao carrinho
+                </Button>
+
                 <Button variant="primary" size="lg">
                   Comprar
                 </Button>
+
               </div>
 
           </Alert>
