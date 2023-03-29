@@ -10,9 +10,11 @@ import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { arrayCarGlobal } from '../../context/CarContext';
+import { useNavigate } from 'react-router-dom';
 
 const Details = () => {
 
+  const navigate = useNavigate()
   const img = arrayCarGlobal.map((el) => {return el})
 
   return (
@@ -87,7 +89,7 @@ const Details = () => {
                   Adicionar ao carrinho
                 </Button>
 
-                <Button variant="primary" size="lg">
+                <Button variant="primary" size="lg" onClick={()=> navigate('/buy')}>
                   Comprar
                 </Button>
 

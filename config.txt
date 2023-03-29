@@ -15,3 +15,4 @@
 - npm install bootstrap
 - npm install react-bootstrap
 - e no main.jsx importar. ex: import 'bootstrap/dist/css/bootstrap.min.css'
+- npm i mdb-react-ui-kit (não é necessario no bootstrap, apenas para a timeline é necessario)
