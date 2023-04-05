@@ -26,33 +26,67 @@ const Form1 = () => {
   const handleClick = () => setShow(!show);
   return (
     <>
-      <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
-        User Registration
-      </Heading>
-      <Flex>
-        <FormControl mr="5%">
-          <FormLabel htmlFor="first-name" fontWeight={'normal'}>
-            First name
-          </FormLabel>
-          <Input id="first-name" placeholder="First name" />
+      <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Dados pessoais </Heading>
+            
+        <FormControl>
+          <FormLabel htmlFor="full-name" fontWeight={'normal'}> Nome completo </FormLabel>
+          <Input id="full-name"  />
+        </FormControl>      
+
+      <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="cpf" fontWeight={'normal'}> CPF </FormLabel>
+            <Input id="cpf" placeholder="000.000.000-00" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="cellphone" fontWeight={'normal'}> Celular </FormLabel>
+            <Input id="cellphone" placeholder="(00) 000000000" />
+          </FormControl>
+
+          <FormControl mr="3%">
+          <FormLabel htmlFor="birthday" fontWeight={'normal'}> Data de nascimento </FormLabel>
+          <Input id="birthday" placeholder="00/00/0000" />
+        </FormControl>
+        
+      </Flex>
+
+      <Flex mt="3%">
+        <FormControl mr="3%">
+          <FormLabel htmlFor="email" fontWeight={'normal'}> Email </FormLabel>
+          <Input id="email" type="email" placeholder="email@email.com" />
+          <FormHelperText>Verifique se o email esta correto.</FormHelperText>
         </FormControl>
 
-        <FormControl>
-          <FormLabel htmlFor="last-name" fontWeight={'normal'}>
-            Last name
-          </FormLabel>
-          <Input id="last-name" placeholder="First name" />
+        <FormControl mr="3%">
+          <FormLabel htmlFor="cep" fontWeight={'normal'}> CEP </FormLabel>
+          <Input id="cep" placeholder="00000-000" />
+        </FormControl>
+
+        <FormControl mr="3%">
+          <FormLabel htmlFor="neighborhood" fontWeight={'normal'}> Bairro </FormLabel>
+          <Input id="neighborhood" />
         </FormControl>
       </Flex>
-      <FormControl mt="2%">
-        <FormLabel htmlFor="email" fontWeight={'normal'}>
-          Email address
-        </FormLabel>
-        <Input id="email" type="email" />
-        <FormHelperText>We'll never share your email.</FormHelperText>
-      </FormControl>
 
-      <FormControl>
+      <Flex mt="3%">
+      <FormControl mr="3%">
+          <FormLabel htmlFor="street" fontWeight={'normal'}> Rua </FormLabel>
+          <Input id="street" />
+        </FormControl>
+
+        <FormControl mr="3%">
+          <FormLabel htmlFor="number" fontWeight={'normal'}> Numero </FormLabel>
+          <Input id="number" />
+        </FormControl>
+
+        <FormControl mr="3%">
+          <FormLabel htmlFor="complement" fontWeight={'normal'}> Complemento </FormLabel>
+          <Input id="complement" />
+        </FormControl>
+      </Flex>
+
+      <FormControl mt="3%">
         <FormLabel htmlFor="password" fontWeight={'normal'} mt="2%">
           Password
         </FormLabel>
