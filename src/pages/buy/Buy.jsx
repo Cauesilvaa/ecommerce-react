@@ -1,13 +1,12 @@
+import Multistep from '../../components/formValidationBuy/FormValidationBuy'
 import NavbarComponent from '../../components/navbar/NavbarComponent'
-import Timeline from '../../components/timeline/Timeline'
 
 const Buy = () => {  
 
   return (    
-    <div>
+    <div className='div-buy'>
         <NavbarComponent />
-        <Timeline />
-        <h1>Tela de compras</h1>
+        <Multistep />
     </div>
   )
 }

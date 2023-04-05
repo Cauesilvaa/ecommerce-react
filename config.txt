@@ -16,3 +16,7 @@
 - npm install react-bootstrap
 - e no main.jsx importar. ex: import 'bootstrap/dist/css/bootstrap.min.css'
 - npm i mdb-react-ui-kit (não é necessario no bootstrap, apenas para a timeline é necessario)
+
+
+* Para instalar o chakara ui
+- npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
