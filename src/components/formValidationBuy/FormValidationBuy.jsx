@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Progress,
   Box,
@@ -16,21 +16,28 @@ import {
   InputGroup,
   Textarea,
   FormHelperText,
-  InputRightElement,
+  Switch,
 } from '@chakra-ui/react';
 
 import { useToast } from '@chakra-ui/react';
+import Badge from 'react-bootstrap/Badge';
 
 const Form1 = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+
+  const [card, setCard] = useState()
+
+  useEffect(() => {
+    console.log('veio no effect');    
+  })  
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Dados pessoais </Heading>
             
         <FormControl>
           <FormLabel htmlFor="full-name" fontWeight={'normal'}> Nome completo </FormLabel>
-          <Input id="full-name"  />
+          <Input id="full-name" />
         </FormControl>      
 
       <Flex mt="3%">
@@ -86,23 +93,17 @@ const Form1 = () => {
         </FormControl>
       </Flex>
 
-      <FormControl mt="3%">
-        <FormLabel htmlFor="password" fontWeight={'normal'} mt="2%">
-          Password
-        </FormLabel>
+      {/* <FormControl mt="3%">
+        <FormLabel htmlFor="password" fontWeight={'normal'} mt="2%"> Password </FormLabel>
         <InputGroup size="md">
-          <Input
-            pr="4.5rem"
-            type={show ? 'text' : 'password'}
-            placeholder="Enter password"
-          />
+          <Input pr="4.5rem" type={show ? 'text' : 'password'} placeholder="Enter password" />
+
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? 'Hide' : 'Show'}
-            </Button>
+            <Button h="1.75rem" size="sm" onClick={handleClick}> {show ? 'Hide' : 'Show'} </Button>
           </InputRightElement>
+
         </InputGroup>
-      </FormControl>
+      </FormControl> */}
     </>
   );
 };
@@ -110,35 +111,63 @@ const Form1 = () => {
 const Form2 = () => {
   return (
     <>
-      <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
-        User Details
-      </Heading>
-      <FormControl as={GridItem} colSpan={[6, 3]}>
-        <FormLabel
-          htmlFor="country"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: 'gray.50',
-          }}>
-          Country / Region
+      <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Pagamento </Heading>
+
+      <br />
+      <h2 style={{textAlign: 'center', color: 'black'}}>
+        <Badge bg="secondary">Forma de pagamento</Badge>
+      </h2>
+      <br /> <br />
+
+      <FormControl as={SimpleGrid} columns={{ lg: 11 }} alignItems={'center'} textAlign={'center'}>
+        <FormLabel htmlFor='isRequired'>Cartão:</FormLabel>
+        <Switch id='isRequiredCard' onChange={(e) => {console.log(e);}} />
+
+        <FormLabel htmlFor='isRequired'>Boleto:</FormLabel>
+        <Switch id='isRequired' />
+
+        <FormLabel htmlFor='isRequired'>Pix:</FormLabel>
+        <Switch id='isRequired' />
+      </FormControl>
+
+      <FormControl as={GridItem} colSpan={[6, 3]} mt={"5%"}>
+
+        <FormLabel htmlFor="country" fontSize="sm" fontWeight="md" color="gray.700" _dark={{color: 'gray.50',}}>
+          Pais/ naturalidade
         </FormLabel>
-        <Select
-          id="country"
-          name="country"
-          autoComplete="country"
-          placeholder="Select option"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md">
-          <option>United States</option>
-          <option>Canada</option>
-          <option>Mexico</option>
+        
+        <Select id="country" name="country" autoComplete="country" placeholder="Selecione" focusBorderColor="brand.400" 
+          shadow="sm" size="sm" w="full" rounded="md">
+          <option value="Brasil">Brasil</option>
+          <option value="Estados unidos">Estados unidos</option>
+          <option value="Canada">Canada</option>
+          <option value="Mexico">Mexico</option>
         </Select>
       </FormControl>
+
+      <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="card-number" fontWeight={'normal'}> Numero do cartão </FormLabel>
+            <Input id="card-number" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="card-name" fontWeight={'normal'}> Nome do cartão </FormLabel>
+            <Input id="card-name"/>
+          </FormControl>
+      </Flex>
+
+      <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="card-number" fontWeight={'normal'}> MM/AA </FormLabel>
+            <Input id="card-number" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="card-name" fontWeight={'normal'}> Código de segurança </FormLabel>
+            <Input id="card-name"/>
+          </FormControl>        
+      </Flex>
 
       <FormControl as={GridItem} colSpan={6}>
         <FormLabel
