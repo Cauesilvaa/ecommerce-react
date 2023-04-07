@@ -20,3 +20,6 @@
 
 * Para instalar o chakara ui
 - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+* Para instalar userForm
+- npm i react-hook-form

@@ -22,16 +22,12 @@ import {
 
 import { useToast } from '@chakra-ui/react';
 import Badge from 'react-bootstrap/Badge';
+import { useForm } from 'react-hook-form';
 
 const Form1 = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
-
-  const [card, setCard] = useState()
-
-  useEffect(() => {
-    console.log('veio no effect');    
-  })  
+ 
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Dados pessoais </Heading>
@@ -110,6 +106,11 @@ const Form1 = () => {
 };
 
 const Form2 = () => {
+
+  const [card, setCard] = useState(false)
+  const [pix, setPix] = useState(false)
+  const [boleto, setBoleto] = useState(false)
+
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Pagamento </Heading>
@@ -122,7 +123,16 @@ const Form2 = () => {
 
       <FormControl as={SimpleGrid} columns={{ lg: 11 }} alignItems={'center'} textAlign={'center'}>
         <FormLabel htmlFor='isRequired'>Cartão:</FormLabel>
-        <Switch id='isRequiredCard' onChange={(e) => {console.log(e);}} />
+        <Switch id='isRequiredCard' onChange={(e) => {
+
+          if (card == false) {
+            setCard(true)
+          } else {
+            setCard(false)
+          }
+
+          console.log(card);
+          }} />
 
         <FormLabel htmlFor='isRequired'>Boleto:</FormLabel>
         <Switch id='isRequired' />
@@ -225,6 +235,8 @@ export default function multistep() {
   const toast = useToast();
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(33.33);
+
+  const {register, handleSubmit} = useForm()
   return (
     <>
       <Box borderWidth="1px" rounded="lg" shadow="1px 1px 3px rgba(0,0,0,0.3)" maxWidth={800} p={6} m="10px auto" as="form">
