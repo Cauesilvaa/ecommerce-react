@@ -108,36 +108,80 @@ const Form1 = () => {
   );
 };
 
+const DataCard = () => {
+  return (
+    <>
+      <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="card-number" fontWeight={'normal'}> Numero do cartão </FormLabel>
+            <Input id="card-number" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="card-name" fontWeight={'normal'}> Nome do cartão </FormLabel>
+            <Input id="card-name"/>
+          </FormControl>
+      </Flex>
+
+      <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="card-number" fontWeight={'normal'}> MM/AA </FormLabel>
+            <Input id="card-number" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="card-name" fontWeight={'normal'}> Código de segurança </FormLabel>
+            <Input id="card-name"/>
+          </FormControl>        
+      </Flex>
+    </>
+  )
+}
+
+const DataBoleto = () => {
+  return (
+    <>
+      <FormControl as={GridItem} colSpan={6}>
+
+        <FormLabel htmlFor="street_address" fontSize="sm" fontWeight="md" color="gray.700" _dark={{ color: 'gray.50', }} mt="2%">
+          Código boleto
+        </FormLabel>
+
+        <Input type="text" name="street_address" id="street_address" focusBorderColor="brand.400" shadow="sm" size="sm" w="full" rounded="md" value={'79gh79k7lkk7gfs87a76sd9fgf0hds7as54214sdg5h6fgh7'} readOnly/>
+        <FormHelperText>Copie o código.</FormHelperText>
+      </FormControl>
+    </>
+  )
+}
+
+const DataPix = () => {
+  return (
+    <>
+      <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
+
+        <FormLabel htmlFor="city" fontSize="sm" fontWeight="md" color="gray.700" _dark={{ color: 'gray.50', }} mt="2%">
+          Pix copia e cola
+        </FormLabel>
+
+        <Input type="text" name="city" id="city" autoComplete="city" focusBorderColor="brand.400" shadow="sm" size="sm" w="full" rounded="md" value={'b6c4vb413m65l70ç98gd6s864d62fd64677f7ds9s089g8fhg7643dfs'} readOnly/>
+        <FormHelperText>Copie a chave.</FormHelperText>
+      </FormControl>
+    </>
+  )
+}
+
 const Form2 = () => {
 
   const [value, setValue] = useState('1')
-
-  const showPaimentForm = () => {
-    switch (value) {
-      case "1":
-        console.log('esconde inputs de pix e boleto');
-        break;
-
-      case "2":
-        console.log('esconde inputs de cartão e pix')
-        break;
-
-      default:
-        console.log('esconde inputs de cartão e boleto');
-        break;
-    }
-  }
-
-  showPaimentForm()
 
   return (
     <>
       <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Pagamento </Heading>
 
       <br />
-      <h2 style={{textAlign: 'center', color: 'black'}}>
-        <Badge bg="secondary">Forma de pagamento</Badge>
-      </h2>
+      {/* <h2 style={{textAlign: 'center'}}>
+        <Badge bg="primary">Forma de pagamento</Badge>
+      </h2> */}
       <br /> <br />
 
       <FormControl as={SimpleGrid} columns={{ lg: 11 }} alignItems={'center'} textAlign={'center'}>
@@ -165,48 +209,12 @@ const Form2 = () => {
         </Select>
       </FormControl>
 
-      <Flex mt="3%">
-        <FormControl mr="3%">
-            <FormLabel htmlFor="card-number" fontWeight={'normal'}> Numero do cartão </FormLabel>
-            <Input id="card-number" />
-          </FormControl>
+      <br />
+      <br />
 
-          <FormControl mr="3%">
-            <FormLabel htmlFor="card-name" fontWeight={'normal'}> Nome do cartão </FormLabel>
-            <Input id="card-name"/>
-          </FormControl>
-      </Flex>
-
-      <Flex mt="3%">
-        <FormControl mr="3%">
-            <FormLabel htmlFor="card-number" fontWeight={'normal'}> MM/AA </FormLabel>
-            <Input id="card-number" />
-          </FormControl>
-
-          <FormControl mr="3%">
-            <FormLabel htmlFor="card-name" fontWeight={'normal'}> Código de segurança </FormLabel>
-            <Input id="card-name"/>
-          </FormControl>        
-      </Flex>
-
-      <FormControl as={GridItem} colSpan={6}>
-
-        <FormLabel htmlFor="street_address" fontSize="sm" fontWeight="md" color="gray.700" _dark={{ color: 'gray.50', }} mt="2%">
-          Pix copia e cola
-        </FormLabel>
-
-        <Input type="text" name="street_address" id="street_address" autoComplete="street-address" focusBorderColor="brand.400"
-          shadow="sm" size="sm" w="full" rounded="md" />
-      </FormControl>
-
-      <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
-
-        <FormLabel htmlFor="city" fontSize="sm" fontWeight="md" color="gray.700" _dark={{ color: 'gray.50', }} mt="2%">
-          Código do boleto
-        </FormLabel>
-
-        <Input type="text" name="city" id="city" autoComplete="city" focusBorderColor="brand.400" shadow="sm" size="sm" w="full" rounded="md"/>
-      </FormControl>
+      { value == '1' && <DataCard /> }
+      { value == '2' && <DataBoleto /> }
+      { value == '3' && <DataPix /> }
 
     </>
   );
