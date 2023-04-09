@@ -18,11 +18,14 @@ import {
   Textarea,
   FormHelperText,
   Switch,
+  RadioGroup,
+  Radio,
 } from '@chakra-ui/react';
 
 import { useToast } from '@chakra-ui/react';
 import Badge from 'react-bootstrap/Badge';
 import { useForm } from 'react-hook-form';
+import { Stack } from 'react-bootstrap';
 
 const Form1 = () => {
   const [show, setShow] = React.useState(false);
@@ -107,9 +110,25 @@ const Form1 = () => {
 
 const Form2 = () => {
 
-  const [card, setCard] = useState(false)
-  const [pix, setPix] = useState(false)
-  const [boleto, setBoleto] = useState(false)
+  const [value, setValue] = useState('1')
+
+  const showPaimentForm = () => {
+    switch (value) {
+      case "1":
+        console.log('esconde inputs de pix e boleto');
+        break;
+
+      case "2":
+        console.log('esconde inputs de cartão e pix')
+        break;
+
+      default:
+        console.log('esconde inputs de cartão e boleto');
+        break;
+    }
+  }
+
+  showPaimentForm()
 
   return (
     <>
@@ -122,23 +141,13 @@ const Form2 = () => {
       <br /> <br />
 
       <FormControl as={SimpleGrid} columns={{ lg: 11 }} alignItems={'center'} textAlign={'center'}>
-        <FormLabel htmlFor='isRequired'>Cartão:</FormLabel>
-        <Switch id='isRequiredCard' onChange={(e) => {
-
-          if (card == false) {
-            setCard(true)
-          } else {
-            setCard(false)
-          }
-
-          console.log(card);
-          }} />
-
-        <FormLabel htmlFor='isRequired'>Boleto:</FormLabel>
-        <Switch id='isRequired' />
-
-        <FormLabel htmlFor='isRequired'>Pix:</FormLabel>
-        <Switch id='isRequired' />
+        <RadioGroup onChange={setValue} value={value}>
+          <Stack direction='row'>
+            <Radio value='1'>Cartão</Radio>
+            <Radio value='2'>Boleto</Radio>
+            <Radio value='3'>Pix</Radio>
+          </Stack>
+        </RadioGroup>
       </FormControl>
 
       <FormControl as={GridItem} colSpan={[6, 3]} mt={"5%"}>
