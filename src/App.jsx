@@ -1,3 +1,7 @@
+/*
+
+JEITO 1 DE FAZER 
+
 import Login from "./pages/login/Login"
 import Home from "./pages/home/Home";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
@@ -20,7 +24,8 @@ const App = () => {
               <Route path="/details" element={<ProtectedRoutes> <Details /> </ProtectedRoutes>} />
               <Route path="/buy" element={<ProtectedRoutes> <Buy /> </ProtectedRoutes>} />
 
-              {/*Esse é para quando o usuario acessar qualquer outra rota alem das declaradas em cima ele é redirecionado para o login*/}
+              {/*Esse é para quando o usuario acessar qualquer outra rota alem das declaradas em cima ele é redirecionado para o login*/
+              /*
               <Route path="*" element={<Login/>}/>
             </Routes>
           </Fragment>
@@ -30,4 +35,32 @@ const App = () => {
   )
 }
 
-export default App
+export default App*/
+
+/* JEITO 2 DE FAZER */
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Fragment, useState } from "react";
+import { CarProvider } from "./context/CarContext";
+import { ChakraProvider } from '@chakra-ui/react'
+import routes from "./utils/routing";
+
+const App = () => { 
+  return (
+    <ChakraProvider>
+      <CarProvider>
+        <BrowserRouter>
+          <Fragment>
+            <Routes>
+              {routes.map(({ path, component }) => (
+                <Route key={path} path={path} element={component()} />
+              ))}
+            </Routes>
+          </Fragment>
+        </BrowserRouter>
+      </CarProvider>
+    </ChakraProvider>
+  )
+}
+
+export default App;
