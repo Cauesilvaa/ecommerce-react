@@ -9,17 +9,22 @@ import {
   Link,
   Stack,
   Image,
+  Alert,
+  AlertIcon
 } from '@chakra-ui/react';
 
 import imgLogin from '../../assets/img-login2.png'
 import LoginServices from '../../services/login/Login';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import SpanError from '../../components/spanError/SpanError';
 
 const loginService = new LoginServices()
 
 const Login = () => {
 
+  const [alert, setAlert] = useState(false)
   const { register, handleSubmit, formState: { errors }} = useForm()
   const navigate = useNavigate()
 
@@ -45,10 +50,11 @@ const Login = () => {
     return alert('Usuario invalido')
     */
 
-    if (data.login !== '1' || data.password !== '1') return alert('Usuario invalido')
+    if (data.login !== '1' || data.password !== '1') return setAlert(true)
+
 
     localStorage.setItem("token", hash("teste"))
-    alert('Usuario valido')
+    setAlert(false)
     navigate('/home')
   }
 
@@ -64,7 +70,7 @@ const Login = () => {
             <FormControl id="login">
               <FormLabel>Login</FormLabel>
               <Input type="login" {...register('login', { required: true })}/>
-              {errors.login && <span style={{color: 'red'}}>Campo obrigatorio</span>}
+              {errors.login && <SpanError message={'Campo obrigatorio'} />}
             </FormControl>
 
             <br />
@@ -72,7 +78,7 @@ const Login = () => {
             <FormControl id="password">
               <FormLabel>Senha</FormLabel>
               <Input type="password" {...register('password', { required: true })}/>
-              {errors.password && <span style={{color: 'red'}}>Campo obrigatorio</span>}
+              {errors.password && <SpanError message={'Campo obrigatorio'} />}
             </FormControl>
 
             <br />
@@ -89,14 +95,20 @@ const Login = () => {
             
           </form>
 
+          {alert == true && 
+            <Stack spacing={3}>
+              <Alert status='error'>
+                <AlertIcon />Usuario não encontrado
+              </Alert>
+            </Stack> 
+          }
+
         </Stack>
 
       </Flex>
 
       <Flex flex={1}>
-        <Image alt={'Login Image'} objectFit={'cover'}
-          src={imgLogin}
-        />
+        <Image alt={'Login Image'} objectFit={'cover'} src={imgLogin} />
       </Flex>
 
     </Stack>
