@@ -1,16 +1,26 @@
-import './Login.css'
-import imgLogin from '../../assets/img-login.jpg'
-import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Link,
+  Stack,
+  Image,
+} from '@chakra-ui/react';
+
+import imgLogin from '../../assets/img-login2.png'
 import LoginServices from '../../services/login/Login';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const loginService = new LoginServices()
 
 const Login = () => {
 
-  const [login, setLogin] = useState('')
-  const [password, setPassword] = useState('')
-  const [btnDisabled, setBtnDisabled] = useState(false)
+  const { register, handleSubmit, formState: { errors }} = useForm()
   const navigate = useNavigate()
 
   function hash(s) {
@@ -20,11 +30,7 @@ const Login = () => {
     }, 0);
   }
 
-  function LoginSistem (e) {
-
-    e.preventDefault()
-
-    setBtnDisabled(true)
+  function loginUser (data) {
 
     /*
     const response = await loginService.Login({email: login, password: password})
@@ -39,50 +45,62 @@ const Login = () => {
     return alert('Usuario invalido')
     */
 
-    if (login !== '1' || password !== '1') {
-      setBtnDisabled(false)
-      return alert('Usuario invalido')
-    }
+    if (data.login !== '1' || data.password !== '1') return alert('Usuario invalido')
 
     localStorage.setItem("token", hash("teste"))
     alert('Usuario valido')
     navigate('/home')
-    setBtnDisabled(false)
   }
 
   return (
-    <div className="Login">
-      
-      <div className='div-fundo-login-1'>
-        <img src={imgLogin}/>
-      </div>
+    <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+      <Flex p={8} flex={1} align={'center'} justify={'center'}>
+        <Stack spacing={4} w={'full'} maxW={'md'}>
 
-      <div className='div-fundo-login-2'>
+          <form onSubmit={handleSubmit(loginUser)}>
 
-        <div className='div-login'>
-          <h1>Entrar</h1>
+            <Heading fontSize={'2xl'}>Faça login na nossa plataforma</Heading> <br />
 
-          <form className='form-login'>
+            <FormControl id="login">
+              <FormLabel>Login</FormLabel>
+              <Input type="login" {...register('login', { required: true })}/>
+              {errors.login && <span style={{color: 'red'}}>Campo obrigatorio</span>}
+            </FormControl>
 
-            <div className="form-floating mb-3">
-              <input type="email" className="form-control inputs-login" id="floatingInput" onChange={(e) => setLogin(e.target.value)}/>
-              <label htmlFor="floatingInput">E-mail</label>
-            </div>
+            <br />
 
-            <div className="form-floating">
-              <input type="password" className="form-control inputs-login" id="floatingPassword" onChange={(e) => setPassword(e.target.value)}/>
-              <label htmlFor="floatingPassword">Senha</label>
-            </div>
+            <FormControl id="password">
+              <FormLabel>Senha</FormLabel>
+              <Input type="password" {...register('password', { required: true })}/>
+              {errors.password && <span style={{color: 'red'}}>Campo obrigatorio</span>}
+            </FormControl>
 
-            <button type='button' onClick={LoginSistem} disabled={btnDisabled}>Entrar</button>
+            <br />
 
+            <Stack spacing={6}>
+
+              <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
+                <Checkbox>Lembrar</Checkbox>
+                <Link color={'blue.500'}>Esqueci minha senha</Link>
+              </Stack>
+
+              <Button colorScheme={'blue'} variant={'solid'} type='submit'>Entrar</Button>
+            </Stack>
+            
           </form>
-        </div>
 
-      </div>
+        </Stack>
 
-    </div>
-  )
+      </Flex>
+
+      <Flex flex={1}>
+        <Image alt={'Login Image'} objectFit={'cover'}
+          src={imgLogin}
+        />
+      </Flex>
+
+    </Stack>
+  );
 }
 
-export default Login
+export default Login;
