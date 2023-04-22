@@ -1,3 +1,4 @@
+import FormValidationBuy from '../../components/formValidationBuy/FormValidationBuy'
 import Multistep from '../../components/formValidationBuy/FormValidationBuy'
 import NavbarComponent from '../../components/navbar/NavbarComponent'
 import {
@@ -18,7 +19,7 @@ const Buy = () => {
           Confirme seus dados para para finalizar a compra
         </Alert>
 
-        <Multistep />
+        <FormValidationBuy />
     </div>
   )
 }
