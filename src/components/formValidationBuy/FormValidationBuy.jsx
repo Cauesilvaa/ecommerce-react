@@ -26,6 +26,7 @@ import { useToast } from '@chakra-ui/react';
 import Badge from 'react-bootstrap/Badge';
 import { useForm } from 'react-hook-form';
 import { Stack } from 'react-bootstrap';
+import { Form } from 'react-router-dom';
 
 const Form1 = () => {
   const [show, setShow] = React.useState(false);
@@ -253,14 +254,143 @@ export default function multistep() {
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(33.33);
 
-  const {register, handleSubmit} = useForm()
+  const {register, handleSubmit, formState: { errors }} = useForm()
+
+  // Form 2
+  const [value, setValue] = useState('1')
+
+  function createBuy (data) {
+    console.log(data);
+  }
+
   return (
     <>
-      <Box borderWidth="1px" rounded="lg" shadow="1px 1px 3px rgba(0,0,0,0.3)" maxWidth={800} p={6} m="10px auto" as="form">
+      <Box borderWidth="1px" rounded="lg" shadow="1px 1px 3px rgba(0,0,0,0.3)" maxWidth={800} p={6} m="10px auto" as="form" onSubmit={handleSubmit(createBuy)}>
 
         <Progress hasStripe value={progress} mb="5%" mx="5%" isAnimated></Progress>
+
+        {/*step === 1 ? <Form1 /> : step === 2 ? <Form2 /> : <Form3 />*/}
+
+        {step === 1 ? 
         
-        {step === 1 ? <Form1 /> : step === 2 ? <Form2 /> : <Form3 />}
+        <> {/* Form 1 */}
+          <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Dados pessoais </Heading>
+              
+          <FormControl>
+            <FormLabel htmlFor="full-name" fontWeight={'normal'}> Nome completo </FormLabel>
+            <Input id="full-name" {...register('name')}/>
+          </FormControl>      
+
+        <Flex mt="3%">
+          <FormControl mr="3%">
+              <FormLabel htmlFor="cpf" fontWeight={'normal'}> CPF </FormLabel>
+              <Input id="cpf" placeholder="000.000.000-00" />
+            </FormControl>
+
+            <FormControl mr="3%">
+              <FormLabel htmlFor="cellphone" fontWeight={'normal'}> Celular </FormLabel>
+              <Input id="cellphone" placeholder="(00) 000000000" />
+            </FormControl>
+
+            <FormControl mr="3%">
+            <FormLabel htmlFor="birthday" fontWeight={'normal'}> Data de nascimento </FormLabel>
+            <Input id="birthday" placeholder="00/00/0000" />
+          </FormControl>
+          
+        </Flex>
+
+        <Flex mt="3%">
+          <FormControl mr="3%">
+            <FormLabel htmlFor="email" fontWeight={'normal'}> Email </FormLabel>
+            <Input id="email" type="email" placeholder="email@email.com" />
+            <FormHelperText>Verifique se o email esta correto.</FormHelperText>
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="cep" fontWeight={'normal'}> CEP </FormLabel>
+            <Input id="cep" placeholder="00000-000" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="neighborhood" fontWeight={'normal'}> Bairro </FormLabel>
+            <Input id="neighborhood" />
+          </FormControl>
+        </Flex>
+
+        <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="street" fontWeight={'normal'}> Rua </FormLabel>
+            <Input id="street" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="number" fontWeight={'normal'}> Numero </FormLabel>
+            <Input id="number" />
+          </FormControl>
+
+          <FormControl mr="3%">
+            <FormLabel htmlFor="complement" fontWeight={'normal'}> Complemento </FormLabel>
+            <Input id="complement" />
+          </FormControl>
+        </Flex>
+      </>
+
+        : step === 2 ? 
+        
+        <> {/* Form 2 */}
+        <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%"> Pagamento </Heading>
+  
+        <br />
+        {/* <h2 style={{textAlign: 'center'}}>
+          <Badge bg="primary">Forma de pagamento</Badge>
+        </h2> */}
+        <br /> <br />
+  
+        <FormControl as={SimpleGrid} columns={{ lg: 11 }} alignItems={'center'} textAlign={'center'}>
+          <RadioGroup onChange={setValue} value={value}>
+            <Stack direction='row'>
+              <Radio value='1'>Cartão</Radio>
+              <Radio value='2'>Boleto</Radio>
+              <Radio value='3'>Pix</Radio>
+            </Stack>
+          </RadioGroup>
+        </FormControl>
+  
+        <FormControl as={GridItem} colSpan={[6, 3]} mt={"5%"}>
+  
+          <FormLabel htmlFor="country" fontSize="sm" fontWeight="md" color="gray.700" _dark={{color: 'gray.50',}}>
+            Pais/ naturalidade
+          </FormLabel>
+          
+          <Select id="country" name="country" autoComplete="country" placeholder="Selecione" focusBorderColor="brand.400" 
+            shadow="sm" size="sm" w="full" rounded="md">
+            <option value="Brasil">Brasil</option>
+            <option value="Estados unidos">Estados unidos</option>
+            <option value="Canada">Canada</option>
+            <option value="Mexico">Mexico</option>
+          </Select>
+        </FormControl>
+  
+        <br />
+        <br />
+  
+        { value == '1' && <DataCard /> }
+        { value == '2' && <DataBoleto /> }
+        { value == '3' && <DataPix /> }
+  
+      </>  
+
+        : 
+
+        <>   {/* Form 3 */}
+          <Alert variant="primary">
+            <Alert.Heading>Dados da compra</Alert.Heading>
+            <hr />
+            <p className="mb-0">Aqui vai ficar os dados</p>
+          </Alert>
+        </>
+        }
+
 
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -285,16 +415,16 @@ export default function multistep() {
             </Flex>
 
             {step === 3 ? (
-              <Button w="15rem" colorScheme="red" variant="solid"
-                onClick={() => {
-                  toast({
-                    title: 'Account created.',
-                    description: "We've created your account for you.",
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}>
+              <Button w="15rem" colorScheme="red" variant="solid" type='submit'
+              onClick={() => {
+                toast({
+                  title: 'Account created.',
+                  description: "We've created your account for you.",
+                  status: 'success',
+                  duration: 3000,
+                  isClosable: true,
+                });
+              }}>
                 Confirmar compra
               </Button>
             ) : null}
