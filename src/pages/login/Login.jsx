@@ -91,6 +91,11 @@ const Login = () => {
               </Stack>
 
               <Button colorScheme={'blue'} variant={'solid'} type='submit'>Entrar</Button>
+
+              <Stack direction={{ base: 'column' }} align={'center'} justify={'space-between'}>
+                <Link color={'blue.500'} onClick={() => {navigate('/registerUser')}}>Criar conta</Link>
+              </Stack>
+
             </Stack>
             
           </form>
