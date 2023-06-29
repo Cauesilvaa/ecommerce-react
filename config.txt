@@ -23,3 +23,8 @@
 
 * Para instalar userForm
 - npm i react-hook-form
+
+* Pare instalar o yup
+- npm i yup
+- npm i @types/yup
+- npm i @hookforms/resolvers
