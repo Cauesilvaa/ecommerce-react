@@ -69,10 +69,10 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import imgLogo from '../../assets/img-login2.png';
+import imgLogo from '../../assets/img-login.jpg';
 import './Navbar.css';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Links = ['Minha conta', 'Contato', 'Sobre'];
 
 const NavLink = ({ children }) => (
   <Link
@@ -106,6 +106,7 @@ export default function NavbarComponent() {
             {/* <Box>{imgLogo}</Box> */}
             <img src={imgLogo} alt="" className='class-img'/>
             <HStack
+              color={'white'}
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
@@ -130,8 +131,6 @@ export default function NavbarComponent() {
           </Box>
         ) : null}
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
     </>
   );
 }

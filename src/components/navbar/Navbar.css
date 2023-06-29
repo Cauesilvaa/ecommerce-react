@@ -1,15 +1,3 @@
-nav a{
-    margin-left: 30px;
-}
-
-.navbar {
-    background-color: #539CCF;
-}
-
-.class-navbar{
-    font-size: 1.20em;
-}
-
 .class-img {
     height: 10%;
     width: 10%;
@@ -19,8 +7,4 @@ nav a{
 .search-navbar {
     margin-right: 10%;
     width: 30%;
-}
-
-.class-color-text li a {
-    color: white;
 }
