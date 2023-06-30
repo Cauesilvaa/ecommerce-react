@@ -27,4 +27,4 @@
 * Pare instalar o yup
 - npm i yup
 - npm i @types/yup
-- npm i @hookforms/resolvers
+- npm i @hookform/resolvers yup
