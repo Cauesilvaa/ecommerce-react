@@ -18,6 +18,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from 'yup';
 import SpanError from '../../components/spanError/SpanError';
+import { useNavigate } from 'react-router-dom';
 
 // const schema = object({
 //   name: string().required()
@@ -26,6 +27,8 @@ import SpanError from '../../components/spanError/SpanError';
 export default function RegisterUser (){
 
   const { register, handleSubmit, formState: { errors } } = useForm(/*{resolver: yupResolver(schema)}*/)
+
+  const navigate = useNavigate()
 
   function createUser(data) {
     console.log(data);
@@ -194,7 +197,8 @@ export default function RegisterUser (){
 
           <ButtonGroup mt="5%" w="100%">
             <Flex w="100%" justifyContent="space-between">
-                <Button w="7rem" colorScheme="blue" variant="solid" type='submit'> Submit </Button>
+                <Button colorScheme='blue' variant='outline' onClick={() => navigate('/login')}> Voltar </Button>
+                <Button w="7rem" colorScheme="blue" variant="solid" type='submit'> Cadastrar </Button>
             </Flex>
           </ButtonGroup>
         </Box>

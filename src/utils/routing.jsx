@@ -8,7 +8,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 const routes = [
   {
     path: '/login',
-    component: () => <ProtectedRoutes> <Login /> </ProtectedRoutes>,
+    component: () => <Login />,
   },
   {
     path: '/home',
