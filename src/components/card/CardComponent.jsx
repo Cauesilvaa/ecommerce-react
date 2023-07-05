@@ -1,36 +1,41 @@
-import React from 'react'
-import './CardComponent.css'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { useNavigate } from 'react-router';
+import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import { arrayCarGlobal } from '../../context/CarContext';
-// import imgChuteira1 from '../../assets/chuteira-1.jpg'
-import { CarContext } from "../../context/CarContext";
+import { useNavigate } from 'react-router';
+import React from 'react'
 
-const CardComponent = ({img, title, text, price}) => {
+export default function CardComponent ({img, title, text, price}) {
 
   const navigate = useNavigate()
 
-  return (    
+  return (
     <>
-      <Card style={{ width: '18rem', marginTop: '20px' }}>
-      <Card.Img variant="top" src={img} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text> {text} </Card.Text>
-        <Card.Text> {price} </Card.Text>
-
-        <Button variant="primary" onClick={()=> {
-          arrayCarGlobal.shift()
-          arrayCarGlobal.push({img, title, text, price})
-          navigate('/details')
-          }}>Detalhes</Button>
-          
-      </Card.Body>
+      <Card maxW='sm' border={'1px'} borderColor={''} marginTop={'20px'}>
+        <CardBody>
+          <Image
+            src={img}
+            alt='Green double couch with wooden legs'
+            borderRadius='lg'
+          />
+          <Stack mt='6' spacing='3'>
+            <Heading size='md'>{title}</Heading>
+            <Text>{text}</Text>
+            <Text color='blue.600' fontSize='2xl'>{price}</Text>
+          </Stack>
+        </CardBody>
+        <Divider />
+        <CardFooter>
+          <ButtonGroup spacing='2'>
+            <Button variant='solid' colorScheme='blue' onClick={()=> {
+              arrayCarGlobal.shift()
+              arrayCarGlobal.push({img, title, text, price})
+              navigate('/details')
+              }}>
+            Comprar agora
+            </Button>
+            <Button variant='ghost' colorScheme='blue'>Adicionar no carrinho</Button>
+          </ButtonGroup>
+        </CardFooter>
       </Card>
-
     </>
   )
 }
-
-export default CardComponent

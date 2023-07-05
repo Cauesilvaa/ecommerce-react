@@ -20,7 +20,8 @@ const Home = () => {
     {id: Math.random(), img: imgChuteira1, title:"Chuteira Nike Mercurial", text: "Produto nike para jogar futebol de campo", price: 'R$: 220,99', category: 'sport'},
     {id: Math.random(), img: imgChuteira2, title:"Chuteira Nike Mercurial", text: "Produto nike para jogar futebol de campo", price: 'R$: 2790,99', category: 'sport'},
     {id: Math.random(), img: imgChuteira3, title:"Chuteira Nike Mercurial do Ney na Copa do mundo de 2014", text: "Produto nike para jogar futebol de campo e dar aula ta ?!", price: 'R$: 320,99', category: 'sport'},
-    {id: Math.random(), img: imgChuteira4, title:"Chuteira Nike Mercurial do CR7 ta?!", text: "Produto nike para jogar futebol de campo", price: 'R$: 320,99', category: 'sport'}]
+    {id: Math.random(), img: imgChuteira4, title:"Chuteira Nike Mercurial do CR7 ta?!", text: "Produto nike para jogar futebol de campo", price: 'R$: 320,99', category: 'sport'}
+  ]
 
   // getCars.push({id: Math.random(), img: imgChuteira4, title:"Chuteira Nike Mercurial do CR7 ta?!", text: "Produto nike para jogar futebol de campo", price: 'R$: 320,99'})
 
