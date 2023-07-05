@@ -10,6 +10,7 @@ import imgChuteira3 from '../../assets/chuteira-3.jpg'
 import imgChuteira4 from '../../assets/chuteira-4.jpg'
 import { CarContext } from "../../context/CarContext";
 import { arrayCarGlobal } from "../../context/CarContext";
+import FooterComponent from '../../components/footer/FooterComponent'
 
 
 const Home = () => {  
@@ -79,6 +80,8 @@ const Home = () => {
       <div className='card-container'>
         { getCars.length > 0 ? getCars.map((el) => <CardComponent key={el.id} img={el.img} title={el.title} text={el.text} price={el.price}/> ) : <h1>Não ha itens</h1> }
       </div>
+
+      <FooterComponent />
 
     </div>
   )

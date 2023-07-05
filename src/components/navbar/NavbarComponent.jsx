@@ -22,7 +22,7 @@ import imgLogo from '../../assets/img-login.jpg';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
-const Links = ['Minha conta', 'Contato', 'Sobre'];
+const Links = ['Home'/*'Minha conta', 'Contato', 'Sobre'*/];
 
 const NavLink = ({ children }) => (
   <Link
@@ -61,7 +61,7 @@ export default function NavbarComponent() {
             <HStack spacing={8} alignItems={'center'}>
               {/* <Box>{imgLogo}</Box> */}
               <img src={imgLogo} alt="" className='class-img'/>
-              <HStack color={'white'} as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+              <HStack color={'white'} as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} onClick={ ()=> { navigate('/home') }}>
                 {Links.map((link) => ( <NavLink key={link}>{link}</NavLink>))}
               </HStack>
             </HStack>
@@ -101,9 +101,9 @@ export default function NavbarComponent() {
                   <br />
                   <MenuDivider />
 
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem onClick={() => { navigate('/login') }}>Logout</MenuItem>
+                  <MenuItem>Meus Pedidos</MenuItem>
+                  <MenuItem>Configurações</MenuItem>
+                  <MenuItem onClick={() => { navigate('/login') }}>Sair</MenuItem>
                 </MenuList>
               </Menu>
 
