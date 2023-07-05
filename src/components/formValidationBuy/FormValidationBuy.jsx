@@ -37,6 +37,28 @@ const FormValidationBuy = () => {
     console.log(data);
   }
 
+  function searchCep(cep) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        const result = await data.json()
+        console.log(result);
+        if(result.erro) resolve('')
+        else resolve(populateCepsFields(result))
+      } catch (error) {
+        console.log(error);
+        reject(error)
+      }      
+    })
+  }
+
+  function populateCepsFields(data) {
+    document.getElementById('neighborhood').value = data.bairro
+    document.getElementById('street').value = data.logradouro
+    document.getElementById('city').value = data.uf
+    document.getElementById('state').value = data.localidade
+  }
+
   const Form1 = () => {
     const [show, setShow] = React.useState(false);
     const handleClick = () => setShow(!show);
@@ -77,12 +99,31 @@ const FormValidationBuy = () => {
   
           <FormControl mr="3%">
             <FormLabel htmlFor="cep" fontWeight={'normal'}> CEP </FormLabel>
-            <Input id="cep" placeholder="00000-000" {...register('cep')}/>
+            <Input id="cep" placeholder="00000-000" {...register('cep')} onChange={(e) => {
+              if (e.target.value.length == 8) searchCep(e.target.value)
+              }}/>
           </FormControl>
   
           <FormControl mr="3%">
             <FormLabel htmlFor="neighborhood" fontWeight={'normal'}> Bairro </FormLabel>
             <Input id="neighborhood" {...register('neighborhood')}/>
+          </FormControl>
+        </Flex>
+        
+        <Flex mt="3%">
+        <FormControl mr="3%">
+            <FormLabel htmlFor="country" fontWeight={'normal'}> Nacionalidade </FormLabel>
+            <Input id="country" {...register('country')}/>
+          </FormControl>
+  
+          <FormControl mr="3%">
+            <FormLabel htmlFor="city" fontWeight={'normal'}> Cidade </FormLabel>
+            <Input id="city" {...register('city')}/>
+          </FormControl>
+  
+          <FormControl mr="3%">
+            <FormLabel htmlFor="state" fontWeight={'normal'}> Estado </FormLabel>
+            <Input id="state" {...register('state')}/>
           </FormControl>
         </Flex>
   
@@ -190,21 +231,6 @@ const FormValidationBuy = () => {
               <Radio value='3'>Pix</Radio>
             </Stack>
           </RadioGroup>
-        </FormControl>
-  
-        <FormControl as={GridItem} colSpan={[6, 3]} mt={"5%"}>
-  
-          <FormLabel htmlFor="country" fontSize="sm" fontWeight="md" color="gray.700" _dark={{color: 'gray.50',}}>
-            Pais/ naturalidade
-          </FormLabel>
-          
-          <Select id="country" name="country" autoComplete="country" placeholder="Selecione" focusBorderColor="brand.400" 
-            shadow="sm" size="sm" w="full" rounded="md" {...register('country')}>
-            <option value="Brasil">Brasil</option>
-            <option value="Estados unidos">Estados unidos</option>
-            <option value="Canada">Canada</option>
-            <option value="Mexico">Mexico</option>
-          </Select>
         </FormControl>
   
         <br />
