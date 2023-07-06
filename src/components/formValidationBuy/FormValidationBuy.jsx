@@ -59,6 +59,14 @@ const FormValidationBuy = () => {
     document.getElementById('state').value = data.localidade
   }
 
+  function cleanCepsFields(data) {
+    document.getElementById('neighborhood').value = ''
+    document.getElementById('street').value = ''
+    document.getElementById('city').value = ''
+    document.getElementById('state').value = ''
+  }
+
+
   const Form1 = () => {
     const [show, setShow] = React.useState(false);
     const handleClick = () => setShow(!show);
@@ -101,6 +109,7 @@ const FormValidationBuy = () => {
             <FormLabel htmlFor="cep" fontWeight={'normal'}> CEP </FormLabel>
             <Input id="cep" placeholder="00000-000" {...register('cep')} onChange={(e) => {
               if (e.target.value.length == 8) searchCep(e.target.value)
+              else cleanCepsFields()
               }}/>
           </FormControl>
   
